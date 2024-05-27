@@ -18,6 +18,11 @@ class CustomerController extends Controller
     ) {
     }
 
+    /**
+     * Create a new customer
+     * @param CustomerRequest $request
+     * @return CustomerResource
+     */
     public function store(CustomerRequest $request): CustomerResource
     {
         $customer = $this->customerService->store(
@@ -29,10 +34,16 @@ class CustomerController extends Controller
         );
     }
 
+    /**
+     * Update a customer
+     * @param CustomerRequest $request
+     * @param Customer $customer
+     * @return CustomerResource
+     */
     public function update(CustomerRequest $request, Customer $customer): CustomerResource
     {
         $customer = $this->customerService->update(
-            $customer,
+            $customer->id,
             CustomerDto::fromAppRequest($request)
         );
         return CustomerResource::make(

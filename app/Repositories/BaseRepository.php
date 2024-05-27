@@ -19,6 +19,11 @@ class BaseRepository implements BaseRepositoryInterface
          return $this->model->findOrFail($id)?->toArray();
     }
 
+    /**
+     * Format the model
+     * @param Model $model
+     * @return \stdClass
+     */
     protected function format(Model $model): \stdClass
     {
         return (object) $model->toArray();

@@ -12,13 +12,24 @@ class CustomerService
     )
     {}
 
+    /**
+     * Store a customer using the repository
+     * @param CustomerDto $customerDto
+     * @return mixed
+     */
     public function store(
         CustomerDto $customerDto
-    ) {
+    ): mixed {
         return $this->customerRepository->store($customerDto);
     }
 
 
+    /**
+     * Update a customer using the repository
+     * @param int $id
+     * @param CustomerDto $customerDto
+     * @return mixed
+     */
     public function update(
         int $id,
         CustomerDto $customerDto
@@ -26,7 +37,12 @@ class CustomerService
         return $this->customerRepository->update($id, $customerDto);
     }
 
-    public function delete(int $id)
+    /**
+     * Delete a customer using the repository
+     * @param int $id
+     * @return bool
+     */
+    public function delete(int $id): bool
     {
         return $this->customerRepository->delete($id);
     }

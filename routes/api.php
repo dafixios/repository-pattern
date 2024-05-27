@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'v1'], function () {
-    Route::resource('customers', CustomerController::class);
+    Route::resource('customers', CustomerController::class)->only(['store', 'update', 'destroy']);
 });
 

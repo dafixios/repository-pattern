@@ -19,6 +19,11 @@ class CustomerController extends Controller
     }
 
 
+    /**
+     * Create a new customer
+     * @param CustomerRequest $request
+     * @return JsonResponse
+     */
     public function store(CustomerRequest $request): JsonResponse
     {
         $customer = $this->customerService->store(
@@ -31,6 +36,12 @@ class CustomerController extends Controller
         );
     }
 
+    /**
+     * Update a customer
+     * @param CustomerRequest $request
+     * @param Customer $customer
+     * @return JsonResponse
+     */
     public function update(CustomerRequest $request, Customer $customer): JsonResponse
     {
         $customer = $this->customerService->update(
@@ -43,6 +54,11 @@ class CustomerController extends Controller
         );
     }
 
+    /**
+     * Delete a customer
+     * @param Customer $customer
+     * @return JsonResponse
+     */
     public function destroy(Customer $customer): JsonResponse
     {
         $this->customerService->delete($customer->id);
