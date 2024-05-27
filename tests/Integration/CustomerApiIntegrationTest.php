@@ -105,4 +105,31 @@ class CustomerApiIntegrationTest extends TestCase
             'email' => 'jane.doe@example.com',
         ]);
     }
+
+
+    /**
+     * Test deleting an existing customer.
+     */
+    public function test_delete_customer(): void
+    {
+        // Create a customer to delete
+        $customerData = [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'jane.doe@example.com',
+        ];
+
+        $customer = Customer::create($customerData);
+
+        // Create the delete request to delete the customer
+        $response = $this->deleteJson('/api/v1/customers/' . $customer->id);
+
+        // Return a 200 status code
+        $response->assertStatus(200);
+
+        // Verify if the customer was deleted
+        $this->assertDatabaseMissing('customers', [
+            'id' => $customer->id,
+        ]);
+    }
 }

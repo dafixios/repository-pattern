@@ -2,47 +2,35 @@
 
 namespace App\Services\Customer;
 
+use App\Contracts\Repositories\Customer\CustomerRepositoryInterface;
 use App\DataTransferObjects\Customer\CustomerDto;
-use App\Enums\CustomerSource;
-use App\Models\Customer;
 
 class CustomerService
 {
+    public function __construct(
+        protected CustomerRepositoryInterface $customerRepository
+    )
+    {}
+
     public function store(
-       CustomerDto $customerDto
+        CustomerDto $customerDto
     ) {
-        return Customer::create([
-            'first_name' => $customerDto->first_name,
-            'last_name' => $customerDto->last_name,
-            'email' => $customerDto->email,
-            'phone' => $customerDto->phone,
-            'address' => $customerDto->address,
-            'city' => $customerDto->city,
-            'state' => $customerDto->state,
-            'zip' => $customerDto->zip,
-            'country' => $customerDto->country,
-            'company' => $customerDto->company,
-            'source' => $customerDto->source,
-        ]);
+        return $this->customerRepository->store($customerDto);
     }
 
 
     public function update(
-        Customer $customer,
+        int $id,
         CustomerDto $customerDto
     ) {
-        return tap($customer)->update([
-            'first_name' => $customerDto->first_name,
-            'last_name' => $customerDto->last_name,
-            'email' => $customerDto->email,
-            'phone' => $customerDto->phone,
-            'address' => $customerDto->address,
-            'city' => $customerDto->city,
-            'state' => $customerDto->state,
-            'zip' => $customerDto->zip,
-            'country' => $customerDto->country,
-            'company' => $customerDto->company,
-        ]);
+        return $this->customerRepository->update($id, $customerDto);
     }
+
+    public function delete(int $id)
+    {
+        return $this->customerRepository->delete($id);
+    }
+
+
 
 }
