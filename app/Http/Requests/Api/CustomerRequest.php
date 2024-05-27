@@ -11,7 +11,7 @@ class CustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class CustomerRequest extends FormRequest
         return [
             'payload.customer.first_name' => 'required',
             'payload.customer.last_name' => 'required',
-            'payload.customer.email' => 'required|email|unique:customers',
+            'payload.customer.email' => 'required|email|unique:customers,email',
             'payload.customer.phone' => 'nullable',
             'payload.customer.address' => 'nullable',
             'payload.customer.city' => 'nullable',

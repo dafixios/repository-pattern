@@ -13,4 +13,18 @@ class Customer extends Model
     protected $casts = [
         'source' => CustomerSource::class
     ];
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'country',
+        'company',
+        'source',
+    ];
 }

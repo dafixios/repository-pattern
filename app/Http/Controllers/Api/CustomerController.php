@@ -19,7 +19,6 @@ class CustomerController extends Controller
 
     public function store(CustomerRequest $request): CustomerResource
     {
-
         $customer = $this->customerService->store(
             CustomerDto::fromApiRequest($request)
         );
